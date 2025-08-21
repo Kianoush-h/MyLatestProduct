@@ -36,7 +36,9 @@ a:hover { color: var(--brand-2); }
 
 .devices { display: grid; grid-template-columns: 160px 1fr; gap: 20px; justify-items: end; }
 .device { position: relative; background: #0e0e14; border-radius: 24px; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 10px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.03); }
-.device .screen { background: linear-gradient(180deg,#171725,#0f0f1a); border-radius: 16px; height: 100%; width: 100%; overflow: hidden; }
+.device .screen { background: linear-gradient(180deg,#171725,#0f0f1a); border-radius: 16px; height: 100%; width: 100%; overflow: hidden; position: relative; display: grid; place-items: center; }
+.slide-img { width: 100%; height: 100%; object-fit: cover; animation: fadeIn .6s ease; }
+@keyframes fadeIn { from { opacity: 0.2; transform: scale(1.01); } to { opacity: 1; transform: scale(1); } }
 .phone { width: 180px; height: 360px; padding: 14px; border-radius: 32px; }
 .laptop { width: 420px; height: 280px; padding: 12px; border-radius: 16px; }
 .shimmer { position: relative; }

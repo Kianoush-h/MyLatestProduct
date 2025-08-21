@@ -79,3 +79,29 @@ document.querySelector('#app').innerHTML = `
   </main>
   <footer class="footer">© ${new Date().getFullYear()} My Latest Product</footer>
 `
+
+// After rendering, mount slideshows inside device mockups
+const webUrls = Object.values(webImages).filter(u => /\.(png|jpe?g|webp|gif|svg)$/i.test(u))
+const productUrls = Object.values(productImages).filter(u => /\.(png|jpe?g|webp|gif|svg)$/i.test(u))
+
+function mountSlideshow(screenEl, urls, altLabel) {
+  if (!screenEl || !urls || urls.length === 0) return
+  const img = document.createElement('img')
+  img.alt = altLabel
+  img.className = 'slide-img'
+  screenEl.appendChild(img)
+  let i = 0
+  function show(idx) {
+    img.src = urls[idx]
+  }
+  show(i)
+  if (urls.length > 1) {
+    setInterval(() => {
+      i = (i + 1) % urls.length
+      show(i)
+    }, 3500)
+  }
+}
+
+mountSlideshow(document.querySelector('.laptop .screen'), webUrls, 'Web preview')
+mountSlideshow(document.querySelector('.phone .screen'), productUrls, 'Product preview')
