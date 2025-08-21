@@ -34,13 +34,16 @@ a:hover { color: var(--brand-2); }
 .hero-copy p { margin: 0 0 20px; color: var(--muted); }
 .cta { display: inline-block; padding: 10px 16px; border-radius: 999px; background: linear-gradient(90deg, var(--brand), var(--brand-2)); color: #0b0b0f; font-weight: 700; }
 
-.devices { display: grid; grid-template-columns: 260px 560px; gap: 28px; justify-items: center; align-items: center; }
+.devices { display: grid; grid-template-columns: 260px 880px; gap: 72px; justify-items: center; align-items: center; perspective: 1600px; }
 .device { position: relative; background: #0e0e14; border-radius: 24px; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 10px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.03); }
 .device .screen { background: linear-gradient(180deg,#171725,#0f0f1a); border-radius: 16px; height: 100%; width: 100%; overflow: hidden; position: relative; display: grid; place-items: center; }
 .slide-img { width: 100%; height: 100%; object-fit: cover; animation: fadeIn .6s ease; }
 @keyframes fadeIn { from { opacity: 0.2; transform: scale(1.01); } to { opacity: 1; transform: scale(1); } }
-.phone { width: 240px; height: 480px; padding: 16px; border-radius: 36px; }
-.laptop { width: 720px; height: 420px; padding: 14px; border-radius: 18px; }
+.phone { width: 240px; height: 480px; padding: 16px; border-radius: 36px; will-change: transform; transition: transform .15s ease-out; background: linear-gradient(180deg,#0c0c12,#0e0e16); box-shadow: 0 10px 50px rgba(0,0,0,.45); }
+.phone:hover { box-shadow: 0 16px 70px rgba(0,0,0,.6); }
+.phone:active { transition-duration: .05s; }
+.notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 110px; height: 22px; background: #0a0a10; border-bottom-left-radius: 14px; border-bottom-right-radius: 14px; box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset; }
+.laptop { width: 880px; height: 520px; padding: 16px; border-radius: 18px; }
 .shimmer { position: relative; }
 .shimmer::after { content: ""; position: absolute; inset: -40% -60%; background: conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0.0), rgba(255,255,255,0.04), rgba(255,255,255,0.0) 60%); filter: blur(6px); animation: rotate 8s linear infinite; }
 @keyframes rotate { to { transform: rotate(360deg); } }

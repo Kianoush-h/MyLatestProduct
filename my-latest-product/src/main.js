@@ -23,8 +23,9 @@ document.querySelector('#app').innerHTML = `
         
       </div>
       <div class="devices">
-        <div class="device phone">
+        <div class="device phone" aria-label="Interactive phone mockup">
           <div class="screen shimmer"></div>
+          <div class="notch" aria-hidden="true"></div>
         </div>
         <div class="device laptop">
           <div class="screen shimmer"></div>
@@ -71,3 +72,25 @@ function mountSlideshow(screenEl, urls, altLabel) {
 
 mountSlideshow(document.querySelector('.laptop .screen'), webUrls, 'Web preview')
 mountSlideshow(document.querySelector('.phone .screen'), productUrls, 'Product preview')
+
+// Interactive phone tilt/rotate
+const phone = document.querySelector('.phone')
+if (phone) {
+  const maxRotate = 20 // degrees
+  function setRotation(clientX, clientY) {
+    const rect = phone.getBoundingClientRect()
+    const x = (clientX - rect.left) / rect.width
+    const y = (clientY - rect.top) / rect.height
+    const rotY = (x - 0.5) * maxRotate * 2 // left-right
+    const rotX = (0.5 - y) * maxRotate * 2 // up-down
+    phone.style.transform = `rotateX(${rotX.toFixed(1)}deg) rotateY(${rotY.toFixed(1)}deg)`
+  }
+  function resetRotation() {
+    phone.style.transform = 'rotateX(0deg) rotateY(0deg)'
+  }
+  phone.addEventListener('pointermove', e => setRotation(e.clientX, e.clientY))
+  phone.addEventListener('pointerleave', resetRotation)
+  phone.addEventListener('pointerdown', e => {
+    phone.setPointerCapture(e.pointerId)
+  })
+}
