@@ -26,10 +26,8 @@ a:hover { color: var(--brand-2); }
 
 #app { max-width: 1200px; margin: 0 auto; padding: 32px 24px 80px; }
 
-.site-header { display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: linear-gradient(180deg, rgba(11,11,15,0.9), rgba(11,11,15,0.4), transparent); backdrop-filter: blur(6px); z-index: 10; padding: 16px 0; }
+.site-header { display: flex; justify-content: flex-start; align-items: center; position: sticky; top: 0; background: linear-gradient(180deg, rgba(11,11,15,0.9), rgba(11,11,15,0.4), transparent); backdrop-filter: blur(6px); z-index: 10; padding: 16px 0; }
 .brand { font-weight: 700; letter-spacing: 0.4px; }
-.nav a { margin-left: 16px; color: var(--text); opacity: 0.85; }
-.nav a:hover { color: var(--brand); }
 
 .hero { position: relative; display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; padding: 40px 0 80px; }
 .hero-copy h1 { margin: 0 0 12px; font-size: 48px; line-height: 1.1; }

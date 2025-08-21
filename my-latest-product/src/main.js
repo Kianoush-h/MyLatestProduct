@@ -19,11 +19,6 @@ const linkedin = 'https://www.linkedin.com/in/kianoush-haratiannejadi/'
 document.querySelector('#app').innerHTML = `
   <header class="site-header">
     <div class="brand">My Latest Product</div>
-    <nav class="nav">
-      <a href="#features">Features</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
-    </nav>
   </header>
   <main>
     <section class="hero">
