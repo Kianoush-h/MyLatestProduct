@@ -30,7 +30,7 @@ document.querySelector('#app').innerHTML = `
           <div class="screen shimmer"></div>
         </div>
       </div>
-      <div class="aurora"></div>
+      
     </section>
 
     <section id="contact" class="contact">
@@ -47,7 +47,6 @@ document.querySelector('#app').innerHTML = `
       </div>
     </section>
   </main>
-  <footer class="footer">© ${new Date().getFullYear()} My Latest Product</footer>
 `
 
 // After rendering, mount slideshows inside device mockups
@@ -99,3 +98,76 @@ if (phone) {
 }
 
 // Buttons removed per request; showing only name, email and LinkedIn.
+
+// Animated canvas background (soft moving color blobs)
+(function startAuroraCanvas() {
+  // Create a full‑page fixed canvas behind all content
+  let canvas = document.getElementById('bg-canvas')
+  if (!canvas) {
+    canvas = document.createElement('canvas')
+    canvas.id = 'bg-canvas'
+    canvas.className = 'bg-canvas'
+    document.body.prepend(canvas)
+  }
+  const ctx = canvas.getContext('2d')
+  let width = 0, height = 0, dpr = Math.max(1, window.devicePixelRatio || 1)
+
+  const blobs = Array.from({ length: 6 }).map((_, i) => {
+    const palette = ['#ff6a3d', '#ffa133', '#2dd4bf', '#6478ff', '#ff73c5', '#22d3ee']
+    return {
+      x: Math.random(),
+      y: Math.random(),
+      r: 0.18 + Math.random() * 0.22,
+      dx: (Math.random() * 0.3 + 0.1) * (Math.random() > 0.5 ? 1 : -1),
+      dy: (Math.random() * 0.3 + 0.1) * (Math.random() > 0.5 ? 1 : -1),
+      color: palette[i % palette.length]
+    }
+  })
+
+  function hexToRgba(hex, a) {
+    const v = hex.replace('#', '')
+    const bigint = parseInt(v.length === 3 ? v.split('').map(c=>c+c).join('') : v, 16)
+    const r = (bigint >> 16) & 255
+    const g = (bigint >> 8) & 255
+    const b = bigint & 255
+    return `rgba(${r}, ${g}, ${b}, ${a})`
+  }
+
+  function resize() {
+    width = window.innerWidth
+    height = window.innerHeight
+    canvas.width = Math.floor(width * dpr)
+    canvas.height = Math.floor(height * dpr)
+    canvas.style.width = width + 'px'
+    canvas.style.height = height + 'px'
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+  }
+  resize()
+  window.addEventListener('resize', resize)
+
+  function step(t) {
+    ctx.clearRect(0, 0, width, height)
+    ctx.globalCompositeOperation = 'lighter'
+    for (const b of blobs) {
+      const x = b.x * width
+      const y = b.y * height
+      const r = b.r * Math.max(width, height)
+      const grad = ctx.createRadialGradient(x, y, 0, x, y, r)
+      grad.addColorStop(0, hexToRgba(b.color, 0.22))
+      grad.addColorStop(1, hexToRgba(b.color, 0))
+      ctx.fillStyle = grad
+      ctx.beginPath()
+      ctx.arc(x, y, r, 0, Math.PI * 2)
+      ctx.fill()
+
+      // drift
+      b.x += b.dx * 0.0005
+      b.y += b.dy * 0.0005
+      if (b.x < -0.2 || b.x > 1.2) b.dx *= -1
+      if (b.y < -0.2 || b.y > 1.2) b.dy *= -1
+    }
+    ctx.globalCompositeOperation = 'source-over'
+    requestAnimationFrame(step)
+  }
+  requestAnimationFrame(step)
+})()

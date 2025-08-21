@@ -22,20 +22,21 @@ body {
 a { color: var(--brand); text-decoration: none; }
 a:hover { color: var(--brand-2); }
 
-#app { max-width: 1200px; margin: 0 auto; padding: 32px 24px 80px; }
+#app { max-width: 1200px; margin: 0 auto; padding: 0 24px 80px; position: relative; z-index: 1; }
 
-.site-header { display: flex; justify-content: flex-start; align-items: center; position: sticky; top: 0; background: linear-gradient(180deg, rgba(11,11,15,0.9), rgba(11,11,15,0.4), transparent); backdrop-filter: blur(6px); z-index: 10; padding: 16px 0; }
+.site-header { display: flex; justify-content: flex-start; align-items: center; position: sticky; top: 0; background: linear-gradient(180deg, rgba(11,11,15,0.9), rgba(11,11,15,0.4), transparent); backdrop-filter: blur(6px); z-index: 10; padding: 16px 24px; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
 .brand { font-weight: 700; letter-spacing: 0.4px; }
 
 .hero { position: relative; display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; justify-items: center; text-align: center; padding: 40px 0 80px; }
+.bg-canvas { position: fixed; inset: 0; z-index: 0; opacity: 0.9; pointer-events: none; }
 .hero-copy h1 { margin: 0 0 12px; font-size: 48px; line-height: 1.1; }
 .hero-copy p { margin: 0 0 20px; color: var(--muted); }
 .cta { display: inline-block; padding: 10px 16px; border-radius: 999px; background: linear-gradient(90deg, var(--brand), var(--brand-2)); color: #0b0b0f; font-weight: 700; }
 
-.devices { display: grid; grid-template-columns: 260px 880px; gap: 72px; justify-items: center; align-items: center; perspective: 1600px; }
+.devices { display: grid; grid-template-columns: 260px 880px; gap: 72px; justify-items: center; align-items: center; perspective: 1600px; z-index: 1; }
 .device { position: relative; background: #0e0e14; border-radius: 24px; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 10px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.03); }
 .device .screen { background: linear-gradient(180deg,#171725,#0f0f1a); border-radius: 16px; height: 100%; width: 100%; overflow: hidden; position: relative; display: grid; place-items: center; }
-.slide-img { width: 100%; height: 100%; object-fit: cover; animation: fadeIn .6s ease; }
+.slide-img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; animation: fadeIn .6s ease; }
 @keyframes fadeIn { from { opacity: 0.2; transform: scale(1.01); } to { opacity: 1; transform: scale(1); } }
 .phone { width: 240px; height: 480px; padding: 16px; border-radius: 36px; will-change: transform; transition: transform .15s ease-out; background: linear-gradient(180deg,#0c0c12,#0e0e16); box-shadow: 0 10px 50px rgba(0,0,0,.45); }
 .phone:hover { box-shadow: 0 16px 70px rgba(0,0,0,.6); }
