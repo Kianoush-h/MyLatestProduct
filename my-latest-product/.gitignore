@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Image placeholder folders (keep folders empty in git)
+src/assets/images/web/*
+src/assets/images/product/*
+!src/assets/images/web/.gitkeep
+!src/assets/images/product/.gitkeep
