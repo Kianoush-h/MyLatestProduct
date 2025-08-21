@@ -29,20 +29,36 @@ a:hover { color: var(--brand-2); }
 
 .hero { position: relative; display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; justify-items: center; text-align: center; padding: 40px 0 80px; }
 .bg-canvas { position: fixed; inset: 0; z-index: 0; opacity: 0.9; pointer-events: none; }
-.hero-copy h1 { margin: 0 0 12px; font-size: 48px; line-height: 1.1; }
-.hero-copy p { margin: 0 0 20px; color: var(--muted); }
+.hero-copy { display: grid; gap: 12px; justify-items: center; }
+.hero-copy h1 { margin: 0 0 12px; font-size: 48px; line-height: 1.1; letter-spacing: 0.2px; text-wrap: balance; }
+.hero-copy h1 a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: linear-gradient(90deg, var(--brand), var(--brand-2)); color: #0b0b0f; font-weight: 800; box-shadow: 0 10px 30px rgba(0,0,0,0.35); transition: transform .15s ease, box-shadow .15s ease; }
+.hero-copy h1 a::after { content: "↗"; opacity: .9; font-weight: 700; }
+.hero-copy h1 a:hover { transform: translateY(-1px); box-shadow: 0 16px 40px rgba(0,0,0,0.45); }
+.hero-copy h1 a:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(59,130,246,0.6), 0 10px 30px rgba(0,0,0,0.35); }
+.hero-copy p { margin: 0 0 20px; color: var(--muted); max-width: 880px; font-size: 18px; line-height: 1.6; }
 .cta { display: inline-block; padding: 10px 16px; border-radius: 999px; background: linear-gradient(90deg, var(--brand), var(--brand-2)); color: #0b0b0f; font-weight: 700; }
 
-.devices { display: grid; grid-template-columns: 260px 880px; gap: 72px; justify-items: center; align-items: center; perspective: 1600px; z-index: 1; }
+.devices { display: grid; grid-template-columns: auto auto; gap: 72px; justify-items: center; align-items: center; perspective: 1600px; z-index: 1; }
 .device { position: relative; background: #0e0e14; border-radius: 24px; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 10px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.03); }
 .device .screen { background: linear-gradient(180deg,#171725,#0f0f1a); border-radius: 16px; height: 100%; width: 100%; overflow: hidden; position: relative; display: grid; place-items: center; }
-.slide-img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; animation: fadeIn .6s ease; }
+.laptop .screen { width: auto; height: auto; border-radius: 16px; background: linear-gradient(180deg,#171725,#0f0f1a); overflow: hidden; display: inline-grid; place-items: center; max-width: 100%; }
+.device .screen > * { min-width: 0; min-height: 0; }
+.slide-img { display: block; animation: fadeIn .6s ease; }
+.phone .slide-img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
+.laptop .slide-img { width: auto; height: auto; max-width: 100%; }
 @keyframes fadeIn { from { opacity: 0.2; transform: scale(1.01); } to { opacity: 1; transform: scale(1); } }
 .phone { width: 240px; height: 480px; padding: 16px; border-radius: 36px; will-change: transform; transition: transform .15s ease-out; background: linear-gradient(180deg,#0c0c12,#0e0e16); box-shadow: 0 10px 50px rgba(0,0,0,.45); }
 .phone:hover { box-shadow: 0 16px 70px rgba(0,0,0,.6); }
 .phone:active { transition-duration: .05s; }
 .notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 110px; height: 22px; background: #0a0a10; border-bottom-left-radius: 14px; border-bottom-right-radius: 14px; box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset; }
-.laptop { width: 880px; height: 520px; padding: 16px; border-radius: 18px; }
+.laptop { padding: 16px; border-radius: 18px; background: #0e0e14; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 10px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.03); width: fit-content; height: auto; max-width: 100%; }
+.browser-chrome { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 10px; background: #0c0c12; border: 1px solid rgba(255,255,255,0.06); border-bottom: none; border-top-left-radius: 12px; border-top-right-radius: 12px; }
+.browser-dots { display: inline-flex; gap: 6px; }
+.browser-dots .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; opacity: .8; }
+.browser-dots .dot.red { background: #ff5f56; }
+.browser-dots .dot.yellow { background: #ffbd2e; }
+.browser-dots .dot.green { background: #27c93f; }
+.laptop .screen { border-top-left-radius: 0; border-top-right-radius: 0; }
 .shimmer { position: relative; }
 .shimmer::after { content: ""; position: absolute; inset: -40% -60%; background: conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0.0), rgba(255,255,255,0.04), rgba(255,255,255,0.0) 60%); filter: blur(6px); animation: rotate 8s linear infinite; }
 @keyframes rotate { to { transform: rotate(360deg); } }
@@ -72,13 +88,19 @@ a:hover { color: var(--brand-2); }
 .contact-item.name { font-weight: 800; letter-spacing: 0.3px; border-color: rgba(255,255,255,0.06); }
 .contact-item.link:hover { border-color: rgba(255,255,255,0.24); color: #ffffff; }
 .contact-item .icon { opacity: .8; }
+.contact-item .avatar { width: 28px; height: 28px; border-radius: 50%; display: inline-grid; place-items: center; background: linear-gradient(90deg, var(--brand), var(--brand-2)); color: #0b0b0f; font-weight: 900; font-size: 12px; letter-spacing: .3px; }
+.contact-item.name .label { white-space: nowrap; }
+.contact-item.link { transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease; background: rgba(255,255,255,0.02); }
+.contact-item.link:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(59,130,246,0.6); }
+.contact-item.link:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
 /* buttons removed */
 
 .footer { margin-top: 64px; color: var(--muted); text-align: center; }
 
 @media (max-width: 900px) {
-  .devices { grid-template-columns: 1fr; }
+  .hero-copy h1 { font-size: 36px; }
+  .devices { grid-template-columns: auto; }
   .phone { width: 75vw; max-width: 320px; height: 62vh; max-height: 560px; }
-  .laptop { width: 90vw; max-width: 900px; height: 42vh; max-height: 520px; }
+  .laptop { width: fit-content; max-width: 100%; height: auto; }
   .contact-ribbon { grid-auto-flow: row; border-radius: 16px; }
 }

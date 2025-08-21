@@ -19,14 +19,21 @@ document.querySelector('#app').innerHTML = `
   <main>
     <section class="hero">
       <div class="hero-copy">
-        <h1>Launch faster with a modern digital service</h1>
-        
+        <h1>check this product at <a href="http://www.dealeh.live/" target="_blank" rel="noopener">www.dealeh.live</a></h1>
+        <p>Discover the latest discounts and flyers near you, and let our AI-powered algorithms optimize the best shopping route to help you purchase all the items on your list while maximizing your savings.</p>
       </div>
       <div class="devices">
         <div class="device phone" aria-label="Interactive phone mockup">
           <div class="screen shimmer"></div>
         </div>
         <div class="device laptop">
+          <div class="browser-chrome" aria-hidden="true">
+            <div class="browser-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+          </div>
           <div class="screen shimmer"></div>
         </div>
       </div>
@@ -35,7 +42,7 @@ document.querySelector('#app').innerHTML = `
 
     <section id="contact" class="contact">
       <div class="contact-ribbon" role="contentinfo" aria-label="Contact information">
-        <span class="contact-item name">Kianoush Haratianenjadi</span>
+        <span class="contact-item name"><span class="avatar" aria-hidden="true">KH</span><span class="label">Kianoush Haratianenjadi</span></span>
         <a class="contact-item link" href="mailto:haratiank2@gmail.com" aria-label="Email Kianoush">
           <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m-1.4 4.25l-6.34 4.23a1 1 0 0 1-1.12 0L4.8 8.25A1 1 0 0 1 6 6.9l5.5 3.67L17 6.9a1 1 0 1 1 1.6 1.35Z"/></svg>
           <span>haratiank2@gmail.com</span>
