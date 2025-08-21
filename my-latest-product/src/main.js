@@ -25,15 +25,12 @@ document.querySelector('#app').innerHTML = `
       <div class="devices">
         <div class="device phone" aria-label="Interactive phone mockup">
           <div class="screen shimmer"></div>
-          <div class="notch" aria-hidden="true"></div>
         </div>
         <div class="device laptop">
           <div class="screen shimmer"></div>
         </div>
       </div>
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="grid-bg"></div>
+      <div class="aurora"></div>
     </section>
 
     <section id="contact" class="contact">

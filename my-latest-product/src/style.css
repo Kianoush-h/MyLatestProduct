@@ -15,9 +15,7 @@
 html, body { height: 100%; }
 body {
   margin: 0;
-  background: radial-gradient(1200px 600px at 80% -10%, #1d1d27 0%, transparent 60%),
-              radial-gradient(800px 400px at -10% 10%, #14141d 0%, transparent 60%),
-              var(--bg);
+  background: var(--bg);
   color: var(--text);
 }
 
@@ -48,12 +46,18 @@ a:hover { color: var(--brand-2); }
 .shimmer::after { content: ""; position: absolute; inset: -40% -60%; background: conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0.0), rgba(255,255,255,0.04), rgba(255,255,255,0.0) 60%); filter: blur(6px); animation: rotate 8s linear infinite; }
 @keyframes rotate { to { transform: rotate(360deg); } }
 
-.grid-bg { position: absolute; inset: -40px -24px -40px; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 32px 32px; mask-image: radial-gradient(60% 60% at 50% 40%, black, transparent 75%); pointer-events: none; }
-.orb { position: absolute; width: 220px; height: 220px; border-radius: 50%; filter: blur(40px); opacity: 0.5; }
-.orb-1 { background: #ff6a3d; top: -40px; right: 10%; animation: float1 7s ease-in-out infinite; }
-.orb-2 { background: #2dd4bf; bottom: -40px; left: 5%; animation: float2 8s ease-in-out infinite; }
-@keyframes float1 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(16px); } }
-@keyframes float2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+.aurora { position: absolute; inset: -20% -10%; pointer-events: none; background:
+  radial-gradient(40% 30% at 20% 20%, rgba(255,106,61,.25), transparent 60%),
+  radial-gradient(35% 25% at 80% 30%, rgba(45,212,191,.22), transparent 60%),
+  radial-gradient(45% 35% at 40% 80%, rgba(255,161,51,.22), transparent 60%);
+  filter: blur(50px) saturate(120%);
+  animation: auroraShift 18s ease-in-out infinite alternate;
+}
+@keyframes auroraShift {
+  0% { transform: translateY(-2%) scale(1); opacity: .9; }
+  50% { transform: translateY(1%) scale(1.05); opacity: .95; }
+  100% { transform: translateY(-1%) scale(1.02); opacity: .9; }
+}
 
 .features, .feature { display: none; }
 
