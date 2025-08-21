@@ -1,11 +1,17 @@
 import './style.css'
 
-// Import all images from the two folders
-const webImages = import.meta.glob('./assets/images/web/*', { eager: true, as: 'url' })
-const productImages = import.meta.glob('./assets/images/product/*', { eager: true, as: 'url' })
+// Import images from both src/ and project-root assets folders
+const webImages = {
+  ...import.meta.glob('./assets/images/web/*', { eager: true, query: '?url', import: 'default' }),
+  ...import.meta.glob('../assets/images/web/*', { eager: true, query: '?url', import: 'default' }),
+}
+const productImages = {
+  ...import.meta.glob('./assets/images/product/*', { eager: true, query: '?url', import: 'default' }),
+  ...import.meta.glob('../assets/images/product/*', { eager: true, query: '?url', import: 'default' }),
+}
 
 function renderImageStrip(images, label) {
-  const urls = Object.values(images)
+  const urls = Object.values(images).filter(u => /\.(png|jpe?g|webp|gif|svg)$/i.test(u))
   if (urls.length === 0) return ''
   return `
     <div class="strip">
