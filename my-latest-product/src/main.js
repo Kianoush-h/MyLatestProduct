@@ -34,18 +34,16 @@ document.querySelector('#app').innerHTML = `
     </section>
 
     <section id="contact" class="contact">
-      <div class="contact-card">
-        <div class="contact-id">
-          <div class="contact-name">Kianoush Haratianenjadi</div>
-          <div class="contact-chips">
-            <a class="chip" href="mailto:haratiank2@gmail.com">haratiank2@gmail.com</a>
-            <a class="chip" target="_blank" rel="noopener" href="${linkedin}">LinkedIn</a>
-          </div>
-        </div>
-        <div class="contact-actions">
-          <a class="btn" href="mailto:haratiank2@gmail.com">Email me</a>
-          <button id="copy-email" class="btn secondary" type="button">Copy email</button>
-        </div>
+      <div class="contact-ribbon" role="contentinfo" aria-label="Contact information">
+        <span class="contact-item name">Kianoush Haratianenjadi</span>
+        <a class="contact-item link" href="mailto:haratiank2@gmail.com" aria-label="Email Kianoush">
+          <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m-1.4 4.25l-6.34 4.23a1 1 0 0 1-1.12 0L4.8 8.25A1 1 0 0 1 6 6.9l5.5 3.67L17 6.9a1 1 0 1 1 1.6 1.35Z"/></svg>
+          <span>haratiank2@gmail.com</span>
+        </a>
+        <a class="contact-item link" target="_blank" rel="noopener" href="${linkedin}" aria-label="LinkedIn profile">
+          <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14M8.34 17.34V9.75H6V17.34h2.34m-.94-8.63a1.36 1.36 0 1 0 0-2.72 1.36 1.36 0 0 0 0 2.72M20 17.34v-4.2c0-2.26-1.21-3.31-2.83-3.31-1.3 0-1.88.72-2.21 1.22v-1.05h-2.34c.03.7 0 7.34 0 7.34H15v-4.1c0-.22.02-.44.08-.6.18-.44.58-.9 1.26-.9.89 0 1.24.68 1.24 1.67v3.93H20Z"/></svg>
+          <span>LinkedIn</span>
+        </a>
       </div>
     </section>
   </main>
@@ -100,17 +98,4 @@ if (phone) {
   })
 }
 
-// Copy email button
-const copyBtn = document.getElementById('copy-email')
-if (copyBtn) {
-  copyBtn.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText('haratiank2@gmail.com')
-      copyBtn.textContent = 'Copied!'
-      setTimeout(() => (copyBtn.textContent = 'Copy email'), 1200)
-    } catch (e) {
-      copyBtn.textContent = 'Copy failed'
-      setTimeout(() => (copyBtn.textContent = 'Copy email'), 1200)
-    }
-  })
-}
+// Buttons removed per request; showing only name, email and LinkedIn.
