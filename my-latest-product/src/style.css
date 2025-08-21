@@ -66,8 +66,15 @@ a:hover { color: var(--brand-2); }
 .strip img { width: 100%; height: 160px; object-fit: cover; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); transition: transform .3s ease; }
 .strip img:hover { transform: translateY(-4px); }
 
-.contact-row { display: grid; grid-template-columns: 1fr auto auto; gap: 16px; align-items: center; background: var(--panel); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; }
-.contact .name, .contact-row .name { font-weight: 700; letter-spacing: 0.2px; }
+.contact-card { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; background: linear-gradient(180deg, rgba(18,18,24,.9), rgba(12,12,18,.9)); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 18px 20px; box-shadow: 0 10px 40px rgba(0,0,0,.35); }
+.contact-id { display: grid; gap: 8px; }
+.contact-name { font-weight: 800; letter-spacing: 0.3px; font-size: 18px; }
+.contact-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.12); color: var(--text); opacity: .9; }
+.contact-actions { display: flex; gap: 10px; }
+.btn { display: inline-block; padding: 10px 14px; border-radius: 10px; background: linear-gradient(90deg, var(--brand), var(--brand-2)); color: #0b0b0f; font-weight: 700; border: none; cursor: pointer; }
+.btn.secondary { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,.16); }
+.btn:active { transform: translateY(1px); }
 
 .footer { margin-top: 64px; color: var(--muted); text-align: center; }
 
@@ -75,4 +82,5 @@ a:hover { color: var(--brand-2); }
   .devices { grid-template-columns: 1fr; }
   .phone { width: 75vw; max-width: 320px; height: 62vh; max-height: 560px; }
   .laptop { width: 90vw; max-width: 900px; height: 42vh; max-height: 520px; }
+  .contact-card { grid-template-columns: 1fr; }
 }

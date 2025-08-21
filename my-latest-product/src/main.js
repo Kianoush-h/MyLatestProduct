@@ -34,10 +34,18 @@ document.querySelector('#app').innerHTML = `
     </section>
 
     <section id="contact" class="contact">
-      <div class="contact-row">
-        <span class="name">Kianoush Haratianenjadi</span>
-        <a href="mailto:haratiank2@gmail.com">haratiank2@gmail.com</a>
-        <a target="_blank" rel="noopener" href="${linkedin}">LinkedIn</a>
+      <div class="contact-card">
+        <div class="contact-id">
+          <div class="contact-name">Kianoush Haratianenjadi</div>
+          <div class="contact-chips">
+            <a class="chip" href="mailto:haratiank2@gmail.com">haratiank2@gmail.com</a>
+            <a class="chip" target="_blank" rel="noopener" href="${linkedin}">LinkedIn</a>
+          </div>
+        </div>
+        <div class="contact-actions">
+          <a class="btn" href="mailto:haratiank2@gmail.com">Email me</a>
+          <button id="copy-email" class="btn secondary" type="button">Copy email</button>
+        </div>
       </div>
     </section>
   </main>
@@ -89,5 +97,20 @@ if (phone) {
   phone.addEventListener('pointerleave', resetRotation)
   phone.addEventListener('pointerdown', e => {
     phone.setPointerCapture(e.pointerId)
+  })
+}
+
+// Copy email button
+const copyBtn = document.getElementById('copy-email')
+if (copyBtn) {
+  copyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('haratiank2@gmail.com')
+      copyBtn.textContent = 'Copied!'
+      setTimeout(() => (copyBtn.textContent = 'Copy email'), 1200)
+    } catch (e) {
+      copyBtn.textContent = 'Copy failed'
+      setTimeout(() => (copyBtn.textContent = 'Copy email'), 1200)
+    }
   })
 }
